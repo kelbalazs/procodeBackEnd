@@ -1,11 +1,15 @@
-Simple Cat Management System
+# Simple Cat Management System
+
 This project is a Simple Cat Management System that allows you to manage information about cats using a Laravel-based back-end and a MySQL database. The project includes database migrations for creating the cats table and two API endpoints: one for adding a new cat and another for retrieving the list of all cats.
 
-Technologies Used
-Framework: Laravel
-Database: MySQL
-Project Setup
-Installation
+## Technologies Used
+
+- Framework: Laravel
+- Database: MySQL
+
+## Project Setup
+
+### Installation
 Clone the repository:
 
 git clone https://github.com/your-repo/cat-management.git
@@ -44,7 +48,7 @@ Run the database migrations:
 
 php artisan migrate
 
-Running the Application
+### Running the Application
 Start the Laravel development server:
 
 php artisan serve
@@ -52,7 +56,7 @@ php artisan serve
 The application will be accessible at http://127.0.0.1:8000.
 There is also a simple front end page is available to see and test the backend.
 
-API Endpoints
+### API Endpoints
 Retrieve All Cats
 Endpoint URL: /api/cats
 HTTP Method: GET
@@ -140,7 +144,8 @@ json
         ]
     }
 }
-Testing the API
+
+### Testing the API
 You can use tools like Postman or cURL to test the API endpoints.
 
 Retrieve All Cats:
@@ -149,5 +154,5 @@ curl -X GET http://127.0.0.1:8000/api/cats
 Add a New Cat:
 curl -X POST http://127.0.0.1:8000/api/cats -H "Content-Type: application/json" -d '{"name": "Whiskers", "dob": "2020-06-15", "owner_name": "John Doe"}'
 
-Conclusion
+### Conclusion
 This Simple Cat Management System provides basic functionality for managing cat information with a Laravel back-end and a MySQL database. The API endpoints allow for retrieving and adding cats, with proper error handling and validation.
