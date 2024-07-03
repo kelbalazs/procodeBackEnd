@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCatsTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -14,6 +14,9 @@ class CreateCatsTable extends Migration
             $table->date('dob');
             $table->string('owner_name');
             $table->timestamps();
+
+            $table->unique('owner_name');
+            $table->index('owner_name');
         });
     }
 
@@ -21,4 +24,4 @@ class CreateCatsTable extends Migration
     {
         Schema::dropIfExists('cats');
     }
-}
+};

@@ -45,6 +45,13 @@
         <button type="submit">Add Cat</button>
     </form>
 
+    <h2>Search Cats by Owner Name</h2>
+    <form id="searchForm">
+        <label for="searchOwnerName">Owner's Name:</label>
+        <input type="text" id="searchOwnerName" name="searchOwnerName">
+        <button type="submit">Search</button>
+    </form>
+
     <h2>List of Cats</h2>
     <table id="catsTable">
         <thead>
@@ -67,8 +74,13 @@
         });
 
         // Function to fetch cats from backend
-        function fetchCats() {
-            fetch('/api/cats')
+        function fetchCats(ownerName = '') {
+            let url = '/api/cats';
+            if (ownerName) {
+                url += `?owner_name=${encodeURIComponent(ownerName)}`;
+            }
+
+            fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     const catsTableBody = document.getElementById('catsTableBody');
@@ -111,14 +123,24 @@
             })
             .then(response => response.json())
             .then(data => {
+                if (data.error) {
+                    throw new Error(data.error);
+                }
                 alert('Cat added successfully!');
                 fetchCats(); // Refresh the cat list
                 this.reset(); // Clear the form fields
             })
             .catch(error => {
                 console.error('Error adding cat:', error);
-                alert('Failed to add cat. Please check console for details.');
+                alert(`Failed to add cat: ${error.message}`);
             });
+        });
+
+        // Add event listener to form for searching cats
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const ownerName = document.getElementById('searchOwnerName').value;
+            fetchCats(ownerName);
         });
     </script>
 </body>
